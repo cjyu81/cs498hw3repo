@@ -48,11 +48,9 @@ def count_tesla():
     
 @app.route("/count-bmw-secondary")
 def count_bmw():
-
     count = collection.with_options(
-        read_preference=ReadPreference.SECONDARY
+        read_preference=ReadPreference.SECONDARY_PREFERRED
     ).count_documents({"Make": "BMW"})
-
     return jsonify({"count": count})
 
 
