@@ -39,22 +39,19 @@ def insert_safe():
 
 @app.route("/count-tesla-primary")
 def count_tesla():
-    coll = collection.with_options(
-        read_preference=ReadPreference.PRIMARY
-    )
 
-    count = coll.count_documents({"Make": "TESLA"})
+    count = collection.with_options(
+        read_preference=ReadPreference.PRIMARY
+    ).count_documents({"Make": "TESLA"})
 
     return jsonify({"count": count})
-
-
+    
 @app.route("/count-bmw-secondary")
 def count_bmw():
-    coll = collection.with_options(
-        read_preference=ReadPreference.SECONDARY
-    )
 
-    count = coll.count_documents({"Make": "BMW"})
+    count = collection.with_options(
+        read_preference=ReadPreference.SECONDARY
+    ).count_documents({"Make": "BMW"})
 
     return jsonify({"count": count})
 
